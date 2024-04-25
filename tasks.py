@@ -29,6 +29,10 @@ def submit_job(c: invoke.Context):
                     }
                     if c.config.machine_spec.accelerator_count
                     else {"machine_type": c.config.machine_spec.machine_type},
+                    "disk_spec": {
+                        "boot_disk_type": c.config.disk_spec.boot_disk_type,
+                        "boot_disk_size_gb": c.config.disk_spec.boot_disk_size_gb,
+                    },
                     "replica_count": 1,
                     "container_spec": {
                         "image_uri": c.config.image,
@@ -36,7 +40,8 @@ def submit_job(c: invoke.Context):
                         "args": [],
                     },
                 }
-            ]
+            ],
+            # "service_account": c.config.service_account,
         },
     }
     parent = f"projects/{c.config.project}/locations/{c.config.location}"
