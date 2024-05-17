@@ -1,8 +1,8 @@
 project: プロジェクト名
 port: 5000
 
-image: gcr.io/プロジェクト名/パス/名前
-# image: asia-northeast1-docker.pkg.dev/プロジェクト名/パス/名前
+image: asia-northeast1-docker.pkg.dev/プロジェクト名/パス/名前
+# image: gcr.io/プロジェクト名/パス/名前
 
 display_name_prefix: ジョブ名
 location: asia-northeast1

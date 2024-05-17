@@ -22,13 +22,15 @@ def submit_job(c: invoke.Context):
         "job_spec": {
             "worker_pool_specs": [
                 {
-                    "machine_spec": {
-                        "machine_type": c.config.machine_spec.machine_type,
-                        "accelerator_type": aiplatform.gapic.AcceleratorType.NVIDIA_TESLA_T4,
-                        "accelerator_count": c.config.machine_spec.accelerator_count,
-                    }
-                    if c.config.machine_spec.accelerator_count
-                    else {"machine_type": c.config.machine_spec.machine_type},
+                    "machine_spec": (
+                        {
+                            "machine_type": c.config.machine_spec.machine_type,
+                            "accelerator_type": aiplatform.gapic.AcceleratorType.NVIDIA_TESLA_T4,
+                            "accelerator_count": c.config.machine_spec.accelerator_count,
+                        }
+                        if c.config.machine_spec.accelerator_count
+                        else {"machine_type": c.config.machine_spec.machine_type}
+                    ),
                     "disk_spec": {
                         "boot_disk_type": c.config.disk_spec.boot_disk_type,
                         "boot_disk_size_gb": c.config.disk_spec.boot_disk_size_gb,
@@ -36,7 +38,7 @@ def submit_job(c: invoke.Context):
                     "replica_count": 1,
                     "container_spec": {
                         "image_uri": c.config.image,
-                        "command": [],
+                        "command": ["poetry", "run", "inv", "train"],
                         "args": [],
                     },
                 }

@@ -1,0 +1,19 @@
+substitutions: # 引数で後から置換する
+  _IMAGE: region-docker.pkg.dev/project_id/bucket/image
+  _TAG: latest
+
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "${_IMAGE}:${_TAG}", "-t", "${_IMAGE}:latest", "."]
+    # 複数のタグをpushする場合はpushを明示的に書かないとエラーになる
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_IMAGE}:${_TAG}"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_IMAGE}:latest"]
+
+images: # ビルドに成功した場合に、Container Registry に自動的に push されるイメージ
+  - "${_IMAGE}:${_TAG}"
+  - "${_IMAGE}:latest"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
