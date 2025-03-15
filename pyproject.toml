@@ -1,18 +1,11 @@
-[tool.poetry]
+[project]
 name = "vertex-ai-job"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "Add your description here"
 readme = "README.md"
-packages = []
-
-[tool.poetry.dependencies]
-python = "^3.9"
-invoke = "^2.2.0"
-google-cloud-storage = "^2.13.0"
-google-cloud-aiplatform = "^1.36.0"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.10"
+dependencies = [
+    "google-cloud-aiplatform>=1.84.0",
+    "google-cloud-storage>=2.19.0",
+    "invoke>=2.2.0",
+]
