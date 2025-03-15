@@ -4,8 +4,8 @@ GCPのvertex aiへjobを投げるコード
 ## docker build and push
 ### ローカル
 ```bash
-poetry run inv docker-build
-poetry run inv docker-push
+uv run inv docker-build
+uv run inv docker-push
 ```
 
 ### Cloud Build
@@ -20,7 +20,7 @@ gcloud builds submit --config cloudbuild.yaml --project=$PROJECT --async --subst
 ## jobを投げる
 ### pythonライブラリで投げる
 ```bash
-poetry run inv submit-job
+uv run inv submit-job
 ```
 
 ### gcloudコマンドで投げる
@@ -47,7 +47,7 @@ cat << EOF > $CONFIG_FILE_PATH
       },
       "containerSpec": {
         "imageUri": "$IMAGE",
-        "command": ["poetry", "run", "inv", "train"]
+        "command": ["uv", "run", "inv", "train"]
       }
     }
   ]

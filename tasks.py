@@ -38,7 +38,7 @@ def submit_job(c: invoke.Context):
                     "replica_count": 1,
                     "container_spec": {
                         "image_uri": c.config.image,
-                        "command": ["poetry", "run", "inv", "train"],
+                        "command": ["uv", "run", "inv", "train"],
                         "args": [],
                     },
                 }
