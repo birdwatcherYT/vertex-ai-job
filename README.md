@@ -1,6 +1,10 @@
 # vertex-ai-job
 GCPのvertex aiへjobを投げるコード
 
+利用の流れ
+1. Dockerイメージをビルドする
+1. jobを投げる
+
 ## docker build and push
 ### ローカル
 ```bash
